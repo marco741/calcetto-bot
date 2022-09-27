@@ -1,6 +1,5 @@
 from dataclasses import dataclass, field
 
-
 @dataclass
 class User:
     user_id: str = field(hash=True)
@@ -17,9 +16,25 @@ class User:
 class Database:
     def __init__(self):
         self._db = {}
-        self.where = ""
-        self.when = ""
+        self._where = ""
+        self._when = ""
         self._backup = {"where": "", "when": "", "users": []}
+
+    @property
+    def where(self):
+        return self._where
+
+    @where.setter
+    def where(self, value):
+        self._where = value
+
+    @property
+    def when(self):
+        return self._when
+
+    @when.setter
+    def when(self, value):
+        self._when = value
 
     def register_user(self, user_id, username) -> User | None:
         old_user = self._db.get(user_id)
