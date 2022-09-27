@@ -1,0 +1,12 @@
+start - Inizia la conversazione
+nome - Imposta il tuo nome e registrati alle notifiche
+carichi - Partecipa alla prossima partita e notifica gli altri utenti
+scarichi - Ritirati sulla partecipazione alla prossima partita e notifica gli altri utenti
+iuajuni - Ottieni la lista degli utenti che parteciperanno alla prossima partita
+dovequando - Conosci dove e quando si giocherà la prossima partita
+dove - Conosci dove si giocherà la prossima partita
+quando - Conosci quando si giocherà la prossima partita
+setdove - Imposta dove si giocherà la prossima partita e notifica gli altri utenti
+setquando - Imposta quando si giocherà la prossima partita e notifica gli altri utenti
+reset - Resetta le informazioni sulla prossima partita
+backup - Ottieni le informazioni presenti prima del reset
