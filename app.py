@@ -26,7 +26,7 @@ async def start(event):
 async def name(event):
     chunks = event.raw_text.split(' ')
     if len(chunks) == 1:
-        return await event.reply('Devi specificare un nome dopo /nome')
+        return await event.reply('Devi specificare un nome dopo /nome\nEsempio: /nome __Marctiell__')
     username = " ".join(chunks[1:])
     db.register_user(event.sender_id, username)
     await event.reply(f'Ciao {username}!\nChe la carica sia con te 😤')
@@ -116,7 +116,7 @@ async def setdove(event):
         return await event.reply('Non sei abbastanza carico 🪫😔, usa il comando /carichi per scoprire un altro lato di te 😤')
     chunks = event.raw_text.split(' ')
     if len(chunks) == 1:
-        return await event.reply('Devi specificare un luogo dopo /setdove')
+        return await event.reply('Devi specificare un luogo dopo /setdove\n Esempio: /setdove __Locubia fratm__')
 
     user = db.get_user(event.sender_id)
     old_where = db.where
@@ -137,7 +137,7 @@ async def setquando(event):
         return await event.reply('Non sei abbastanza carico 🪫😔, usa il comando /carichi per scoprire un altro lato di te 😤')
     chunks = event.raw_text.split(' ')
     if len(chunks) == 1:
-        return await event.reply('Devi specificare la data-ora dopo /setquando')
+        return await event.reply('Devi specificare la data-ora dopo /setquando\n Esempio: /setquando __Alle 19__')
 
     user = db.get_user(event.sender_id)
     old_when = db.when
@@ -146,7 +146,7 @@ async def setquando(event):
     
     if old_when != "":
         return await notify_users(db.get_other_users(event.sender_id), f'"{user}" ha cambiato il momento della partita da "{old_when}" a "{new_when}"')
-    await notify_users(db.get_other_users(event.sender_id), f'"{user}" ha impostato il luogo della partita a "{new_when}"')
+    await notify_users(db.get_other_users(event.sender_id), f'"{user}" ha impostato il momento della partita a "{new_when}"')
     await bot.send_message(event.sender_id, f'Okke ammo')
 
 

@@ -41,6 +41,9 @@ class Database:
         self._db[user_id] = User(user_id, username)
         return old_user
 
+    def delete_user(self, user_id):
+        del self._db[user_id]
+
     def is_registered(self, user_id) -> bool:
         return user_id in self._db
 

@@ -10,3 +10,4 @@ setdove - Imposta dove si giocherà la prossima partita e notifica gli altri ute
 setquando - Imposta quando si giocherà la prossima partita e notifica gli altri utenti
 reset - Resetta le informazioni sulla prossima partita
 backup - Ottieni le informazioni presenti prima del reset
+stop - Smetti di ricevere notifiche e cancella il tuo nome
