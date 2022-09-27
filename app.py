@@ -1,18 +1,8 @@
-from telethon import TelegramClient, events
+from telethon import events
 from datetime import datetime
-import asyncio
-import config
+from context import db, bot
 from decorators import last_handler_decorator
-from db import Database, User
-
-bot = TelegramClient('calcetto-bot', config.API_ID, config.API_HASH).start(bot_token=config.BOT_TOKEN)
-db = Database()
-
-async def notify_users(users: list[User], message: str):
-    tasks = []
-    for user in users:
-        tasks.append(bot.send_message(user.user_id, message))
-    await asyncio.gather(*tasks)
+from utils import notify_users
 
 
 @bot.on(events.NewMessage(pattern='/start'))
@@ -143,7 +133,7 @@ async def setquando(event):
     old_when = db.when
     new_when = " ".join(chunks[1:])
     db.when = f"{new_when} (Impostato alle {datetime.now().strftime('%H:%M')} del {datetime.now().strftime('%d/%m/%Y')})"
-    
+
     if old_when != "":
         return await notify_users(db.get_other_users(event.sender_id), f'"{user}" ha cambiato il momento della partita da "{old_when}" a "{new_when}"')
     await notify_users(db.get_other_users(event.sender_id), f'"{user}" ha impostato il momento della partita a "{new_when}"')
@@ -167,6 +157,7 @@ async def backup(event):
     list_of_users = ",\n".join([repr(player) for player in users])
     await bot.send_message(event.sender_id, f"Prima di resettare c'era: \nposto: {where}\ndata: {when}\n\ngiocatori: \n{list_of_users}")
 
-with bot:
-    print("Bot is running")
-    bot.run_until_disconnected()
+if __name__ == "__main__":
+    with bot:
+        print("Bot is running")
+        bot.run_until_disconnected()
